@@ -6,18 +6,16 @@ using View;
 
 namespace Presenters
 {
-    [RequireComponent(typeof(SceneLoader))]
+    [RequireComponent(typeof(SceneLoader), typeof(ViewHandler))]
     public class GamePresenter : MonoBehaviour
     {
-        [SerializeField] private MainMenu mainMenuPrefab;
-        [SerializeField] private Hud hudPrefab;
         [SerializeField] private float pointsSetDelay = 2f;
         
         private static GamePresenter _instance;
         
         private GameModel _gameModel;
-        private MainMenu _mainMenu;
-        private Hud _hud;
+        private ViewHandler _viewHandler;
+       
         private bool _isGameplay;
 
         private void Awake()
@@ -34,20 +32,10 @@ namespace Presenters
         private void Start()
         {
             _gameModel = new GameModel(pointsSetDelay);
-            InstantiateMainMenu();
-            InstantiateHud();
-            _mainMenu.OnPlay += LoadGameplayScene;
-        }
-
-        private void InstantiateHud()
-        {
-            _hud = Instantiate(hudPrefab, gameObject.transform);
-            _hud.gameObject.SetActive(false);
-        }
-
-        private void InstantiateMainMenu()
-        {
-            _mainMenu = Instantiate(mainMenuPrefab, gameObject.transform);
+            _viewHandler = GetComponent<ViewHandler>();
+            _viewHandler.InstantiateMainMenu();
+            _viewHandler.InstantiateHud();
+            _viewHandler.GetMainMenu().OnPlay += LoadGameplayScene;
         }
 
         private void Update()
@@ -56,13 +44,13 @@ namespace Presenters
             
             _gameModel.Update(Time.deltaTime, (v) =>
             {
-                _hud.SetScoreToHud(v);
+                _viewHandler.GetHud().SetScoreToHud(v);
             });
         }
 
         private void OnDisable()
         {
-            _mainMenu.OnPlay -= LoadGameplayScene;
+            _viewHandler.GetMainMenu().OnPlay -= LoadGameplayScene;
         }
 
         private void LoadGameplayScene()
@@ -73,16 +61,16 @@ namespace Presenters
         IEnumerator WaitForSceneLoad(AsyncOperation op)
         {
             yield return new WaitUntil(() => op.isDone);
-            _mainMenu.gameObject.SetActive(false);
-            _hud.gameObject.SetActive(true);
+            _viewHandler.GetMainMenu().gameObject.SetActive(false);
+            _viewHandler.GetHud().gameObject.SetActive(true);
             _isGameplay = true;
         }
 
         private void LoadMainMenuScene()
         {
             GetComponent<SceneLoader>().LoadMainMenu();
-            _hud.gameObject.SetActive(false);
-            _mainMenu.gameObject.SetActive(true);
+            _viewHandler.GetHud().gameObject.SetActive(false);
+            _viewHandler.GetMainMenu().gameObject.SetActive(true);
         }
     }
 }

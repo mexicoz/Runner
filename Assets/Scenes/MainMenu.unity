@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 337771104}
   - component: {fileID: 337771103}
   - component: {fileID: 337771105}
+  - component: {fileID: 337771106}
   m_Layer: 0
   m_Name: Processor
   m_TagString: Untagged
@@ -152,8 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769a5fbc68384dd3b79d931678a3eb34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPrefab: {fileID: 2421458271975711541, guid: bc6573e8991dad544b52774a0a139be3, type: 3}
-  hudPrefab: {fileID: 5575193712904569869, guid: 7bcfb1fe00503bc45bcc7e15df60040a, type: 3}
   pointsSetDelay: 2
 --- !u!4 &337771104
 Transform:
@@ -184,6 +183,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuScene: MainMenu
   gameplayScene: Game
+--- !u!114 &337771106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337771102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d969dd50a34443acc80f763536797c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuPrefab: {fileID: 2421458271975711541, guid: bc6573e8991dad544b52774a0a139be3, type: 3}
+  hudPrefab: {fileID: 5575193712904569869, guid: 7bcfb1fe00503bc45bcc7e15df60040a, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
