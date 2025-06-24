@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using GamePlay;
+using UnityEngine;
 
 namespace Player
 {
     public class Jump : MonoBehaviour
     {
+        public PausedHandler pause;
         public float jumpHeight = 2f;
         public float jumpDuration = 0.4f;
 
@@ -17,6 +19,7 @@ namespace Player
 
         void Update()
         {
+            if (pause.IsPause) return;
             if ((Input.GetMouseButtonDown(0) || IsTouchBegan()) && !isJumping)
             {
                 StartCoroutine(JumpRoutine());

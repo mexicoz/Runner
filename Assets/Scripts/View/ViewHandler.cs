@@ -30,5 +30,10 @@ namespace View
         {
             _mainMenu = Instantiate(mainMenuPrefab, gameObject.transform);
         }
+
+        public void PlayGameOver()
+        {
+            _hud.ShowGameOver();
+        }
     }
 }

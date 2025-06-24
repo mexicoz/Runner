@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsSetDelay: 2
+  playerPrefab: {fileID: 1180779844964964041, guid: 4b50afd26254ebc49bad9c8025f1b51a, type: 3}
+  pause: {fileID: 11400000, guid: 15d68961a7090e2488364f753acd87ce, type: 2}
 --- !u!4 &337771104
 Transform:
   m_ObjectHideFlags: 0

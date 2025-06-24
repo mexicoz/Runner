@@ -25,9 +25,10 @@ namespace Models
             }
         }
 
-        public void ResetScore()
+        public void ResetScore(Action<int> callback)
         {
             Score = 0;
+            callback?.Invoke(Score);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace GamePlay
         [SerializeField] private float speed = 2f;
         [SerializeField] private List<GameObject> enemies1;
         [SerializeField] private List<GameObject> enemies2;
+        [SerializeField] private PausedHandler pause;
 
         private float _backgroundWidth;
 
@@ -24,6 +25,7 @@ namespace GamePlay
 
         void Update()
         {
+            if (pause.IsPause) return;
             background1.position += Vector3.left * speed * Time.deltaTime;
             background2.position += Vector3.left * speed * Time.deltaTime;
 

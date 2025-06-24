@@ -5,9 +5,10 @@ namespace Player
 {
     public class PlayerCollide : MonoBehaviour
     {
+        public Action OnGameOver;
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Time.timeScale = 0;
+            OnGameOver?.Invoke();
         }
     }
 }
